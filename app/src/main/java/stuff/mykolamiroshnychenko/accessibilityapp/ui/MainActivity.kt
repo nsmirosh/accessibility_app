@@ -49,11 +49,7 @@ class MainActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK) {
             initializeView()
         } else {
-            Toast.makeText(this,
-                    R.string.draw_permission_not_available,
-                    Toast.LENGTH_SHORT).show()
-
-            finish()
+            showOverlayPermissionError()
         }
     }
 
@@ -70,6 +66,14 @@ class MainActivity : AppCompatActivity() {
     private fun startService() {
         val intent = Intent(this@MainActivity, ChatHeadService::class.java)
         startService(intent)
+        finish()
+    }
+
+    private fun showOverlayPermissionError()  {
+        Toast.makeText(this,
+                R.string.draw_permission_not_available,
+                Toast.LENGTH_SHORT).show()
+
         finish()
     }
 
